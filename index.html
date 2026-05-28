@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cornerstone AG | Grain Management, Marketing & Farm Consulting</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --green-dark:  #1e3d2f;
+            --green-mid:   #2d5a3d;
+            --green-light: #3d7a52;
+            --green-pale:  #e8f0eb;
+            --gold:        #c9a84c;
+            --gold-light:  #e8c56e;
+            --white:       #ffffff;
+            --off-white:   #f8f6f1;
+            --text-dark:   #1a2e22;
+            --text-body:   #3d5246;
+            --text-light:  #6b7f72;
+            --border:      #d8e4dc;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            background: var(--white);
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            line-height: 1.2;
+        }
+
+        /* ── Navigation ── */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+            padding: 0 2rem;
+            background: transparent;
+            transition: background 0.35s ease, box-shadow 0.35s ease;
+        }
+        nav.scrolled {
+            background: var(--green-dark);
+            box-shadow: 0 2px 24px rgba(0,0,0,0.18);
+        }
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 78px;
+        }
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            text-decoration: none;
+        }
+        .nav-logo-text { display: flex; flex-direction: column; }
+        .nav-logo-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--white);
+            letter-spacing: 0.02em;
+            line-height: 1.1;
+        }
+        .nav-logo-sub {
+            font-size: 0.62rem;
+            font-weight: 500;
+            color: var(--gold-light);
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+            align-items: center;
+        }
+        .nav-links a {
+            color: rgba(255,255,255,0.82);
+            text-decoration: none;
+            font-size: 0.82rem;
+            font-weight: 500;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover { color: var(--gold-light); }
+        .nav-cta {
+            background: var(--gold) !important;
+            color: var(--green-dark) !important;
+            padding: 0.58rem 1.35rem;
+            border-radius: 4px;
+            font-weight: 700 !important;
+            transition: background 0.2s, transform 0.15s !important;
+        }
+        .nav-cta:hover {
+            background: var(--gold-light) !important;
+            transform: translateY(-1px);
+        }
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 4px;
+        }
+        .nav-toggle span {
+            display: block;
+            width: 24px; height: 2px;
+            background: var(--white);
+            border-radius: 2px;
+            transition: transform 0.3s;
+        }
+
+        /* ── Hero ── */
+        #hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            background: var(--green-dark);
+        }
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg,
+                rgba(18,44,30,0.98) 0%,
+                rgba(30,61,47,0.95) 40%,
+                rgba(45,90,61,0.93) 70%,
+                rgba(18,44,30,0.98) 100%
+            );
+        }
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                repeating-linear-gradient(0deg, transparent, transparent 64px, rgba(255,255,255,0.018) 64px, rgba(255,255,255,0.018) 65px),
+                repeating-linear-gradient(90deg, transparent, transparent 64px, rgba(255,255,255,0.018) 64px, rgba(255,255,255,0.018) 65px);
+        }
+        .hero-bg::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent 0%, var(--gold) 30%, var(--gold-light) 50%, var(--gold) 70%, transparent 100%);
+        }
+        .hero-content {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 120px 2rem 80px;
+            display: grid;
+            grid-template-columns: 1fr 480px;
+            gap: 4rem;
+            align-items: center;
+            width: 100%;
+        }
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(201,168,76,0.13);
+            border: 1px solid rgba(201,168,76,0.38);
+            color: var(--gold-light);
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            padding: 0.38rem 1rem;
+            border-radius: 100px;
+            margin-bottom: 1.4rem;
+        }
+        .hero-badge::before {
+            content: '';
+            width: 6px; height: 6px;
+            background: var(--gold);
+            border-radius: 50%;
+        }
+        .hero-headline {
+            font-size: clamp(2.5rem, 4.5vw, 3.75rem);
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 1.3rem;
+            line-height: 1.13;
+        }
+        .hero-headline em {
+            font-style: italic;
+            color: var(--gold-light);
+        }
+        .hero-sub {
+            font-size: 1.05rem;
+            color: rgba(255,255,255,0.72);
+            margin-bottom: 2.5rem;
+            line-height: 1.75;
+            font-weight: 300;
+            max-width: 520px;
+        }
+        .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .btn-primary {
+            background: var(--gold);
+            color: var(--green-dark);
+            padding: 0.875rem 2rem;
+            border-radius: 4px;
+            font-weight: 700;
+            font-size: 0.875rem;
+            letter-spacing: 0.04em;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+            display: inline-block;
+        }
+        .btn-primary:hover {
+            background: var(--gold-light);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 28px rgba(201,168,76,0.38);
+        }
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            padding: 0.875rem 2rem;
+            border-radius: 4px;
+            font-weight: 500;
+            font-size: 0.875rem;
+            letter-spacing: 0.04em;
+            text-decoration: none;
+            border: 1.5px solid rgba(255,255,255,0.38);
+            transition: border-color 0.2s, background 0.2s;
+            display: inline-block;
+        }
+        .btn-secondary:hover {
+            border-color: rgba(255,255,255,0.75);
+            background: rgba(255,255,255,0.07);
+        }
+        .hero-stats {
+            display: flex;
+            gap: 2.5rem;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        .hero-stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--gold-light);
+            line-height: 1;
+        }
+        .hero-stat-label {
+            font-size: 0.72rem;
+            color: rgba(255,255,255,0.48);
+            letter-spacing: 0.06em;
+            margin-top: 0.3rem;
+        }
+        /* Decorative emblem */
+        .hero-emblem-wrap {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .hero-emblem { width: 100%; max-width: 380px; opacity: 0.11; }
+
+        .scroll-hint {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            color: rgba(255,255,255,0.35);
+            font-size: 0.65rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+        .scroll-line {
+            width: 1px; height: 38px;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.38), transparent);
+            animation: scrollPulse 2.2s ease infinite;
+        }
+        @keyframes scrollPulse {
+            0%,100% { opacity: 0.38; }
+            50% { opacity: 0.8; }
+        }
+
+        /* ── Shared Section Styles ── */
+        section { padding: 6rem 2rem; }
+        .section-inner { max-width: 1200px; margin: 0 auto; }
+        .section-label {
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 0.65rem;
+        }
+        .section-title {
+            font-size: clamp(1.85rem, 3.2vw, 2.75rem);
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 0.85rem;
+        }
+        .section-sub {
+            font-size: 1rem;
+            color: var(--text-body);
+            line-height: 1.75;
+            max-width: 600px;
+        }
+        .section-hd { margin-bottom: 3.5rem; }
+        .section-hd.center { text-align: center; }
+        .section-hd.center .section-sub { margin: 0 auto; }
+        .gold-rule {
+            width: 44px; height: 3px;
+            background: linear-gradient(90deg, var(--gold), var(--gold-light));
+            border-radius: 2px;
+            margin: 0.9rem 0 1.4rem;
+        }
+        .section-hd.center .gold-rule { margin: 0.9rem auto 1.4rem; }
+
+        /* ── Services ── */
+        #services { background: var(--off-white); }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+        .service-card {
+            background: var(--white);
+            border-radius: 10px;
+            padding: 2.5rem;
+            border: 1px solid var(--border);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--green-mid), var(--gold));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.35s ease;
+        }
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 18px 50px rgba(30,61,47,0.11);
+        }
+        .service-card:hover::before { transform: scaleX(1); }
+        .service-icon {
+            width: 54px; height: 54px;
+            background: var(--green-pale);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+        .service-icon svg {
+            width: 26px; height: 26px;
+            color: var(--green-mid);
+        }
+        .service-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 0.7rem;
+        }
+        .service-desc {
+            font-size: 0.88rem;
+            color: var(--text-body);
+            line-height: 1.78;
+            margin-bottom: 1.5rem;
+        }
+        .service-list { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+        .service-list li {
+            font-size: 0.83rem;
+            color: var(--text-body);
+            padding-left: 1.2rem;
+            position: relative;
+        }
+        .service-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.5em;
+            width: 6px; height: 6px;
+            border-radius: 50%;
+            background: var(--gold);
+        }
+
+        /* ── About ── */
+        #about { background: var(--green-dark); }
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+        .about-text .section-label { color: var(--gold-light); }
+        .about-text .section-title { color: var(--white); }
+        .about-body {
+            color: rgba(255,255,255,0.72);
+            font-size: 0.975rem;
+            line-height: 1.82;
+        }
+        .about-body + .about-body { margin-top: 1rem; }
+        .pillars {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.9rem;
+            margin-top: 2.25rem;
+        }
+        .pillar {
+            background: rgba(255,255,255,0.055);
+            border: 1px solid rgba(255,255,255,0.09);
+            border-radius: 8px;
+            padding: 1.2rem 1.3rem;
+        }
+        .pillar-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--gold-light);
+            margin-bottom: 0.3rem;
+        }
+        .pillar-desc {
+            font-size: 0.78rem;
+            color: rgba(255,255,255,0.5);
+            line-height: 1.55;
+        }
+        .value-cards { display: flex; flex-direction: column; gap: 0.9rem; }
+        .value-card {
+            background: rgba(255,255,255,0.045);
+            border: 1px solid rgba(255,255,255,0.09);
+            border-left: 3px solid var(--gold);
+            border-radius: 0 8px 8px 0;
+            padding: 1.4rem 1.75rem;
+        }
+        .value-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--gold-light);
+            line-height: 1;
+            margin-bottom: 0.2rem;
+        }
+        .value-label {
+            font-size: 0.83rem;
+            color: rgba(255,255,255,0.58);
+        }
+        .value-sub {
+            font-size: 0.72rem;
+            color: rgba(255,255,255,0.3);
+            margin-top: 0.08rem;
+        }
+
+        /* ── Contact ── */
+        #contact { background: var(--off-white); }
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+        .contact-lede {
+            font-size: 0.95rem;
+            color: var(--text-body);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+        .contact-items { display: flex; flex-direction: column; gap: 1.4rem; }
+        .contact-item { display: flex; align-items: flex-start; gap: 1rem; }
+        .contact-item-icon {
+            width: 42px; height: 42px;
+            background: var(--green-pale);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .contact-item-icon svg { width: 18px; height: 18px; color: var(--green-mid); }
+        .contact-item-label {
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--text-light);
+            margin-bottom: 0.15rem;
+        }
+        .contact-item-value {
+            font-size: 0.95rem;
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+        .contact-form {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 2.4rem;
+            border: 1px solid var(--border);
+        }
+        .contact-form h3 {
+            font-size: 1.3rem;
+            color: var(--text-dark);
+            margin-bottom: 0.35rem;
+        }
+        .contact-form p {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            margin-bottom: 1.75rem;
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.38rem;
+            margin-bottom: 1rem;
+        }
+        .form-group label {
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.07em;
+            text-transform: uppercase;
+            color: var(--text-body);
+        }
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            background: var(--off-white);
+            border: 1.5px solid var(--border);
+            border-radius: 6px;
+            padding: 0.72rem 1rem;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.88rem;
+            color: var(--text-dark);
+            transition: border-color 0.2s, box-shadow 0.2s;
+            outline: none;
+            width: 100%;
+        }
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--green-mid);
+            box-shadow: 0 0 0 3px rgba(45,90,61,0.1);
+        }
+        .form-group textarea { resize: vertical; min-height: 96px; }
+        .form-submit {
+            width: 100%;
+            background: var(--green-dark);
+            color: var(--white);
+            border: none;
+            padding: 1rem;
+            border-radius: 6px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.88rem;
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.15s;
+            margin-top: 0.4rem;
+        }
+        .form-submit:hover {
+            background: var(--green-mid);
+            transform: translateY(-1px);
+        }
+
+        /* ── Footer ── */
+        footer {
+            background: #0f1d14;
+            color: rgba(255,255,255,0.55);
+            padding: 4rem 2rem 2rem;
+        }
+        .footer-inner { max-width: 1200px; margin: 0 auto; }
+        .footer-top {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 4rem;
+            padding-bottom: 2.75rem;
+            border-bottom: 1px solid rgba(255,255,255,0.07);
+            margin-bottom: 1.75rem;
+        }
+        .footer-brand-desc {
+            font-size: 0.85rem;
+            line-height: 1.75;
+            margin-top: 1rem;
+            color: rgba(255,255,255,0.42);
+            max-width: 270px;
+        }
+        .footer-col-title {
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 1.1rem;
+        }
+        .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.55rem; }
+        .footer-links a {
+            color: rgba(255,255,255,0.5);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.2s;
+        }
+        .footer-links a:hover { color: var(--gold-light); }
+        .footer-links span { font-size: 0.85rem; color: rgba(255,255,255,0.3); }
+        .footer-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .footer-bottom p { font-size: 0.78rem; color: rgba(255,255,255,0.28); }
+        .footer-bottom-links { display: flex; gap: 1.5rem; }
+        .footer-bottom-links a {
+            color: rgba(255,255,255,0.28);
+            font-size: 0.78rem;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .footer-bottom-links a:hover { color: rgba(255,255,255,0.55); }
+
+        /* ── Responsive ── */
+        @media (max-width: 1024px) {
+            .hero-content { grid-template-columns: 1fr; }
+            .hero-emblem-wrap { display: none; }
+            .services-grid { grid-template-columns: repeat(2, 1fr); }
+            .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+            .contact-wrapper { grid-template-columns: 1fr; gap: 3rem; }
+            .footer-top { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+        }
+
+        @media (max-width: 768px) {
+            section { padding: 4rem 1.25rem; }
+            nav { padding: 0 1.25rem; }
+            .nav-links {
+                display: none;
+                position: fixed;
+                top: 78px; left: 0; right: 0;
+                background: var(--green-dark);
+                flex-direction: column;
+                padding: 1.5rem 1.75rem 2rem;
+                gap: 1rem;
+                box-shadow: 0 10px 28px rgba(0,0,0,0.22);
+            }
+            .nav-links.open { display: flex; }
+            .nav-toggle { display: flex; }
+            .services-grid { grid-template-columns: 1fr; }
+            .hero-stats { flex-wrap: wrap; gap: 1.5rem; }
+            .form-row { grid-template-columns: 1fr; }
+            .pillars { grid-template-columns: 1fr; }
+            .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+            .footer-bottom { flex-direction: column; gap: 0.75rem; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════ NAVIGATION ═══════════════════════════════ -->
+<nav id="navbar">
+    <div class="nav-inner">
+
+        <a href="#hero" class="nav-logo">
+            <svg width="40" height="40" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <polygon points="22,3 41,22 22,41 3,22" fill="none" stroke="#c9a84c" stroke-width="2"/>
+                <polygon points="22,9 35,22 22,35 9,22" fill="rgba(201,168,76,0.12)" stroke="#c9a84c" stroke-width="1"/>
+                <circle cx="22" cy="22" r="2.8" fill="#c9a84c"/>
+                <line x1="22" y1="22" x2="22" y2="11" stroke="#c9a84c" stroke-width="1.8"/>
+                <line x1="22" y1="14.5" x2="19.2" y2="12.5" stroke="#c9a84c" stroke-width="1.2"/>
+                <line x1="22" y1="14.5" x2="24.8" y2="12.5" stroke="#c9a84c" stroke-width="1.2"/>
+                <ellipse cx="22" cy="11" rx="2.5" ry="4" fill="#c9a84c" opacity="0.75"/>
+            </svg>
+            <div class="nav-logo-text">
+                <span class="nav-logo-name">Cornerstone AG</span>
+                <span class="nav-logo-sub">Indiana Agricultural Consultants</span>
+            </div>
+        </a>
+
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#services">Services</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#contact" class="nav-cta">Get Started</a></li>
+        </ul>
+
+        <button class="nav-toggle" id="navToggle" aria-label="Open navigation">
+            <span></span><span></span><span></span>
+        </button>
+
+    </div>
+</nav>
+
+
+<!-- ═══════════════════════════════ HERO ═══════════════════════════════════ -->
+<section id="hero">
+    <div class="hero-bg"></div>
+
+    <div class="hero-content">
+
+        <div>
+            <div class="hero-badge">Indiana Agricultural Specialists</div>
+            <h1 class="hero-headline">
+                Your Grain.<br>
+                Your Farm.<br>
+                <em>Your Partner.</em>
+            </h1>
+            <p class="hero-sub">
+                Cornerstone AG brings expert grain management, strategic marketing, and independent farm consulting to Indiana's agricultural community — so you can make confident decisions every season.
+            </p>
+            <div class="hero-actions">
+                <a href="#contact" class="btn-primary">Work With Us</a>
+                <a href="#services" class="btn-secondary">Our Services</a>
+            </div>
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <div class="hero-stat-number">3</div>
+                    <div class="hero-stat-label">Core Services</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-number">100%</div>
+                    <div class="hero-stat-label">Independent Advice</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-number">IN</div>
+                    <div class="hero-stat-label">Indiana Based</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Decorative emblem -->
+        <div class="hero-emblem-wrap" aria-hidden="true">
+            <svg class="hero-emblem" viewBox="0 0 380 380" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="190" cy="190" r="175" stroke="white" stroke-width="0.8" stroke-dasharray="5 9"/>
+                <circle cx="190" cy="190" r="130" stroke="white" stroke-width="0.5"/>
+                <polygon points="190,28 352,190 190,352 28,190" fill="none" stroke="white" stroke-width="1.5"/>
+                <polygon points="190,70 310,190 190,310 70,190" fill="none" stroke="white" stroke-width="0.7"/>
+                <!-- Central wheat cluster -->
+                <line x1="190" y1="190" x2="190" y2="70" stroke="white" stroke-width="2.2"/>
+                <ellipse cx="190" cy="70" rx="7" ry="16" fill="white" opacity="0.85"/>
+                <ellipse cx="175" cy="94" rx="6" ry="12" fill="white" opacity="0.65" transform="rotate(-22 175 94)"/>
+                <ellipse cx="205" cy="94" rx="6" ry="12" fill="white" opacity="0.65" transform="rotate(22 205 94)"/>
+                <!-- Left stalk -->
+                <line x1="190" y1="190" x2="142" y2="90" stroke="white" stroke-width="1.6"/>
+                <ellipse cx="142" cy="90" rx="6" ry="13" fill="white" opacity="0.6" transform="rotate(-30 142 90)"/>
+                <ellipse cx="131" cy="108" rx="4.5" ry="9" fill="white" opacity="0.45" transform="rotate(-40 131 108)"/>
+                <!-- Right stalk -->
+                <line x1="190" y1="190" x2="238" y2="90" stroke="white" stroke-width="1.6"/>
+                <ellipse cx="238" cy="90" rx="6" ry="13" fill="white" opacity="0.6" transform="rotate(30 238 90)"/>
+                <ellipse cx="249" cy="108" rx="4.5" ry="9" fill="white" opacity="0.45" transform="rotate(40 249 108)"/>
+                <!-- Horizon ground -->
+                <path d="M80 268 Q135 250 190 256 Q245 262 300 248" stroke="white" stroke-width="1" fill="none" opacity="0.35"/>
+                <!-- Corner diamonds -->
+                <rect x="180" y="180" width="20" height="20" stroke="white" stroke-width="0.8" fill="none" opacity="0.4"/>
+            </svg>
+        </div>
+
+    </div>
+
+    <div class="scroll-hint" aria-hidden="true">
+        <div class="scroll-line"></div>
+        <span>Scroll</span>
+    </div>
+</section>
+
+
+<!-- ══════════════════════════════ SERVICES ════════════════════════════════ -->
+<section id="services">
+    <div class="section-inner">
+
+        <div class="section-hd center">
+            <p class="section-label">What We Do</p>
+            <h2 class="section-title">Comprehensive Agricultural Services</h2>
+            <div class="gold-rule"></div>
+            <p class="section-sub">From bin to bushel to bottom line — hands-on expertise across every dimension of modern grain farming.</p>
+        </div>
+
+        <div class="services-grid">
+
+            <!-- Grain Management -->
+            <div class="service-card">
+                <div class="service-icon">
+                    <svg viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M5 12 Q5 6 13 6 Q21 6 21 12 L21 21 Q21 23 13 23 Q5 23 5 21 Z"/>
+                        <path d="M5 15.5 Q13 17.5 21 15.5"/>
+                        <path d="M5 19 Q13 20.5 21 19"/>
+                        <line x1="13" y1="6" x2="13" y2="2.5"/>
+                        <line x1="13" y1="4" x2="10.8" y2="2.8"/>
+                        <line x1="13" y1="4" x2="15.2" y2="2.8"/>
+                    </svg>
+                </div>
+                <h3 class="service-title">Grain Management</h3>
+                <p class="service-desc">We help you maximize the value of every bushel with disciplined storage, inventory tracking, and logistics coordination — from harvest through delivery.</p>
+                <ul class="service-list">
+                    <li>On-farm storage planning &amp; optimization</li>
+                    <li>Grain quality &amp; condition monitoring</li>
+                    <li>Harvest scheduling &amp; logistics</li>
+                    <li>Elevator relationship management</li>
+                    <li>Inventory accounting &amp; reporting</li>
+                </ul>
+            </div>
+
+            <!-- Grain Marketing -->
+            <div class="service-card">
+                <div class="service-icon">
+                    <svg viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="3,21 9,13 14,16.5 21,7.5"/>
+                        <circle cx="21" cy="7.5" r="1.8" fill="currentColor" stroke="none"/>
+                        <line x1="3" y1="21" x2="3" y2="4"/>
+                        <line x1="3" y1="21" x2="24" y2="21"/>
+                        <line x1="6" y1="21" x2="6" y2="19"/>
+                        <line x1="10" y1="21" x2="10" y2="17.5"/>
+                        <line x1="14" y1="21" x2="14" y2="18.5"/>
+                        <line x1="18" y1="21" x2="18" y2="12"/>
+                    </svg>
+                </div>
+                <h3 class="service-title">Grain Marketing</h3>
+                <p class="service-desc">Navigate volatile commodity markets with a clear strategy. We build customized marketing plans designed to reduce risk and improve your farm's profitability year over year.</p>
+                <ul class="service-list">
+                    <li>Customized marketing plan development</li>
+                    <li>Cash &amp; futures market analysis</li>
+                    <li>Basis tracking &amp; contract management</li>
+                    <li>Pricing strategy &amp; decision support</li>
+                    <li>Crop insurance coordination</li>
+                </ul>
+            </div>
+
+            <!-- Farm Consulting -->
+            <div class="service-card">
+                <div class="service-icon">
+                    <svg viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M2 18 Q7 11 13 13 Q19 15 24 11"/>
+                        <line x1="2" y1="22" x2="24" y2="22"/>
+                        <circle cx="19.5" cy="6.5" r="2.8"/>
+                        <line x1="19.5" y1="1.5" x2="19.5" y2="3.5"/>
+                        <line x1="19.5" y1="9.5" x2="19.5" y2="11.5"/>
+                        <line x1="14.5" y1="6.5" x2="16.5" y2="6.5"/>
+                        <line x1="22.5" y1="6.5" x2="24.5" y2="6.5"/>
+                        <line x1="7" y1="22" x2="7" y2="16.5"/>
+                        <line x1="4.5" y1="22" x2="4.5" y2="17.5"/>
+                        <line x1="4.5" y1="19.5" x2="7" y2="19.5"/>
+                    </svg>
+                </div>
+                <h3 class="service-title">Farm Consulting</h3>
+                <p class="service-desc">Independent, unbiased advice for your entire operation. Whether you're at a financial crossroads, planning an expansion, or simply need a trusted second opinion — we're in your corner.</p>
+                <ul class="service-list">
+                    <li>Farm financial analysis &amp; planning</li>
+                    <li>Land rent &amp; lease negotiations</li>
+                    <li>Input cost benchmarking</li>
+                    <li>Crop planning &amp; rotation strategy</li>
+                    <li>Succession &amp; transition planning</li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- ═══════════════════════════════ ABOUT ══════════════════════════════════ -->
+<section id="about">
+    <div class="section-inner">
+        <div class="about-grid">
+
+            <div class="about-text">
+                <p class="section-label">Why Cornerstone AG</p>
+                <h2 class="section-title" style="color:white">Built on Trust.<br>Rooted in the Field.</h2>
+                <div class="gold-rule"></div>
+
+                <p class="about-body">
+                    Cornerstone AG was founded on a simple belief: Indiana farmers deserve straight talk, practical expertise, and a partner who is genuinely invested in their success — not in selling a product or hitting a quota.
+                </p>
+                <p class="about-body">
+                    We are a small, dedicated team based right here in Indiana. We know the local markets, the seasonal rhythms, and the pressures you face every year. When you work with Cornerstone AG, you get direct access to experienced advisors who treat your operation with the same care they'd give their own.
+                </p>
+
+                <div class="pillars">
+                    <div class="pillar">
+                        <div class="pillar-title">Independent</div>
+                        <div class="pillar-desc">No affiliations, no agendas. Just honest recommendations in your best interest.</div>
+                    </div>
+                    <div class="pillar">
+                        <div class="pillar-title">Local</div>
+                        <div class="pillar-desc">Indiana-based and deeply familiar with regional markets and conditions.</div>
+                    </div>
+                    <div class="pillar">
+                        <div class="pillar-title">Experienced</div>
+                        <div class="pillar-desc">Proven expertise across grain, markets, and whole-farm operations.</div>
+                    </div>
+                    <div class="pillar">
+                        <div class="pillar-title">Accessible</div>
+                        <div class="pillar-desc">Small team means you always reach someone who knows your operation.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="value-cards">
+                <div class="value-card">
+                    <div class="value-number">Indiana</div>
+                    <div class="value-label">Locally owned &amp; operated</div>
+                    <div class="value-sub">Serving Indiana's farming communities</div>
+                </div>
+                <div class="value-card">
+                    <div class="value-number">Independent</div>
+                    <div class="value-label">No product ties or commission conflicts</div>
+                    <div class="value-sub">Our only goal is your farm's performance</div>
+                </div>
+                <div class="value-card">
+                    <div class="value-number">Personal</div>
+                    <div class="value-label">Small team, direct relationships</div>
+                    <div class="value-sub">You're never just a number with us</div>
+                </div>
+                <div class="value-card">
+                    <div class="value-number">Proactive</div>
+                    <div class="value-label">We stay ahead of markets &amp; conditions</div>
+                    <div class="value-sub">So you can act, not react</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- ══════════════════════════════ CONTACT ═════════════════════════════════ -->
+<section id="contact">
+    <div class="section-inner">
+
+        <div class="section-hd">
+            <p class="section-label">Get In Touch</p>
+            <h2 class="section-title">Let's Talk About Your Operation</h2>
+            <div class="gold-rule"></div>
+            <p class="section-sub">Whether you have a specific challenge or just want to explore how Cornerstone AG can help, we'd love to hear from you.</p>
+        </div>
+
+        <div class="contact-wrapper">
+
+            <div>
+                <p class="contact-lede">
+                    We're available during regular business hours and typically respond within one business day. Reach out by phone, email, or through the form and we'll get back to you right away.
+                </p>
+
+                <div class="contact-items">
+
+                    <div class="contact-item">
+                        <div class="contact-item-icon">
+                            <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M2.5 4a1.5 1.5 0 011.5-1.5h1.8a.75.75 0 01.71.51l.9 2.7a.75.75 0 01-.18.8L5.9 7.8s1 2.1 2.4 2.4l1.3-1.28a.75.75 0 01.8-.18l2.7.9a.75.75 0 01.51.71V12a1.5 1.5 0 01-1.5 1.5C5.6 13.5 2.5 7.4 2.5 4z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <div class="contact-item-label">Phone</div>
+                            <!-- TODO: Replace with real phone number -->
+                            <div class="contact-item-value">(XXX) XXX-XXXX</div>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-item-icon">
+                            <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="1.5" y="3.5" width="15" height="11" rx="1.5"/>
+                                <polyline points="1.5,3.5 9,10 16.5,3.5"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <div class="contact-item-label">Email</div>
+                            <!-- TODO: Replace with real email address -->
+                            <div class="contact-item-value">info@cornerstoneag.com</div>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-item-icon">
+                            <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="9" cy="7" r="3.5"/>
+                                <path d="M3 16c0-3.3 2.7-6 6-6s6 2.7 6 6"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <div class="contact-item-label">Location</div>
+                            <!-- TODO: Add specific town/city if desired -->
+                            <div class="contact-item-value">Indiana</div>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-item-icon">
+                            <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="1.5" y="3.5" width="15" height="13" rx="1"/>
+                                <line x1="1.5" y1="7.5" x2="16.5" y2="7.5"/>
+                                <line x1="6" y1="1.5" x2="6" y2="5.5"/>
+                                <line x1="12" y1="1.5" x2="12" y2="5.5"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <div class="contact-item-label">Business Hours</div>
+                            <div class="contact-item-value">Mon – Fri, 8:00am – 5:00pm CT</div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="contact-form">
+                <h3>Send Us a Message</h3>
+                <p>Fill out the form and we'll reach out shortly.</p>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName">First Name</label>
+                        <input type="text" id="firstName" placeholder="John">
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Last Name</label>
+                        <input type="text" id="lastName" placeholder="Smith">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" placeholder="john@yourfarm.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" placeholder="(XXX) XXX-XXXX">
+                </div>
+
+                <div class="form-group">
+                    <label for="service">Service of Interest</label>
+                    <select id="service">
+                        <option value="">Select a service...</option>
+                        <option value="grain-management">Grain Management</option>
+                        <option value="grain-marketing">Grain Marketing</option>
+                        <option value="farm-consulting">Farm Consulting</option>
+                        <option value="all">All Services / Not Sure</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" placeholder="Tell us about your operation and what you're looking for..."></textarea>
+                </div>
+
+                <button type="button" class="form-submit">Send Message</button>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- ═══════════════════════════════ FOOTER ═════════════════════════════════ -->
+<footer>
+    <div class="footer-inner">
+
+        <div class="footer-top">
+
+            <div>
+                <a href="#hero" class="nav-logo" style="text-decoration:none">
+                    <svg width="36" height="36" viewBox="0 0 44 44" fill="none">
+                        <polygon points="22,3 41,22 22,41 3,22" fill="none" stroke="#c9a84c" stroke-width="2"/>
+                        <polygon points="22,9 35,22 22,35 9,22" fill="rgba(201,168,76,0.12)" stroke="#c9a84c" stroke-width="1"/>
+                        <circle cx="22" cy="22" r="2.8" fill="#c9a84c"/>
+                        <line x1="22" y1="22" x2="22" y2="11" stroke="#c9a84c" stroke-width="1.8"/>
+                        <line x1="22" y1="14.5" x2="19.2" y2="12.5" stroke="#c9a84c" stroke-width="1.2"/>
+                        <line x1="22" y1="14.5" x2="24.8" y2="12.5" stroke="#c9a84c" stroke-width="1.2"/>
+                        <ellipse cx="22" cy="11" rx="2.5" ry="4" fill="#c9a84c" opacity="0.75"/>
+                    </svg>
+                    <div class="nav-logo-text">
+                        <span class="nav-logo-name">Cornerstone AG</span>
+                        <span class="nav-logo-sub" style="color:rgba(255,255,255,0.35)">Indiana Agricultural Consultants</span>
+                    </div>
+                </a>
+                <p class="footer-brand-desc">Expert grain management, marketing, and farm consulting for Indiana's agricultural community. Straightforward advice. Real results.</p>
+            </div>
+
+            <div>
+                <p class="footer-col-title">Services</p>
+                <ul class="footer-links">
+                    <li><a href="#services">Grain Management</a></li>
+                    <li><a href="#services">Grain Marketing</a></li>
+                    <li><a href="#services">Farm Consulting</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <p class="footer-col-title">Company</p>
+                <ul class="footer-links">
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <br>
+                <p class="footer-col-title">Contact</p>
+                <ul class="footer-links">
+                    <!-- TODO: Replace with real phone / email -->
+                    <li><a href="tel:+1XXXXXXXXXX">(XXX) XXX-XXXX</a></li>
+                    <li><a href="mailto:info@cornerstoneag.com">info@cornerstoneag.com</a></li>
+                    <li><span>Indiana</span></li>
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 Cornerstone AG. All rights reserved.</p>
+            <div class="footer-bottom-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+        </div>
+
+    </div>
+</footer>
+
+
+<script>
+    // Sticky nav
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+        navbar.classList.toggle('scrolled', window.scrollY > 50);
+    }, { passive: true });
+
+    // Mobile nav toggle
+    const navToggle = document.getElementById('navToggle');
+    const navLinks  = document.getElementById('navLinks');
+    navToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+    navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+</script>
+
+</body>
+</html>
