@@ -54,17 +54,12 @@
         .nav-inner {
             max-width: 100%;
             margin: 0 auto;
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-            height: auto;
-            padding: 0;
+            display: block;
             position: relative;
             overflow: hidden;
         }
         .nav-logo {
-            display: flex;
-            align-items: center;
+            display: block;
             text-decoration: none;
             width: 100%;
             height: auto;
@@ -82,8 +77,8 @@
             align-items: center;
             position: absolute;
             right: 2.5rem;
-            top: 50%;
-            transform: translateY(-50%);
+            top: 0;
+            bottom: 0;
             z-index: 10;
         }
         .nav-links a {
@@ -170,7 +165,7 @@
             position: relative;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 220px 2rem 80px;
+            padding: 100px 2rem 80px;
             display: grid;
             grid-template-columns: 1fr 480px;
             gap: 4rem;
