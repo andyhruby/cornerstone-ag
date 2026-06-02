@@ -268,6 +268,8 @@
             opacity: 0.06;
             z-index: 0;
             pointer-events: none;
+            object-fit: contain;
+            object-position: center;
         }
 
         /* Decorative emblem */
@@ -679,45 +681,7 @@
 <body>
 
 <!-- Fixed background logo -->
-<svg class="fixed-logo-bg" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <!-- Outer circle border -->
-    <circle cx="200" cy="200" r="185" stroke="#1e3d2f" stroke-width="16" fill="none"/>
-
-    <!-- Wheat head (gold) -->
-    <g transform="translate(140, 120)">
-        <!-- Center stem -->
-        <line x1="30" y1="80" x2="30" y2="20" stroke="#c9a84c" stroke-width="2"/>
-        <!-- Wheat leaves -->
-        <ellipse cx="18" cy="25" rx="8" ry="14" fill="#c9a84c" transform="rotate(-25 18 25)"/>
-        <ellipse cx="42" cy="25" rx="8" ry="14" fill="#c9a84c" transform="rotate(25 42 25)"/>
-        <ellipse cx="15" cy="42" rx="8" ry="14" fill="#c9a84c" transform="rotate(-25 15 42)"/>
-        <ellipse cx="45" cy="42" rx="8" ry="14" fill="#c9a84c" transform="rotate(25 45 42)"/>
-        <ellipse cx="12" cy="59" rx="8" ry="14" fill="#c9a84c" transform="rotate(-25 12 59)"/>
-        <ellipse cx="48" cy="59" rx="8" ry="14" fill="#c9a84c" transform="rotate(25 48 59)"/>
-        <ellipse cx="10" cy="76" rx="8" ry="14" fill="#c9a84c" transform="rotate(-25 10 76)"/>
-        <ellipse cx="50" cy="76" rx="8" ry="14" fill="#c9a84c" transform="rotate(25 50 76)"/>
-    </g>
-
-    <!-- Bar chart (dark green) -->
-    <g transform="translate(245, 140)">
-        <!-- Bar 1 -->
-        <rect x="5" y="45" width="18" height="35" fill="#1e3d2f"/>
-        <!-- Bar 2 -->
-        <rect x="30" y="30" width="18" height="50" fill="#2d5a3d"/>
-        <!-- Bar 3 -->
-        <rect x="55" y="10" width="18" height="70" fill="#1e3d2f"/>
-    </g>
-
-    <!-- Rolling fields (layered) -->
-    <g>
-        <!-- Bottom brown field -->
-        <path d="M 80 280 Q 120 265 160 280 Q 200 295 240 275 Q 280 260 320 280 L 320 340 Q 200 350 80 340 Z" fill="#8b7355" opacity="0.8"/>
-        <!-- Middle green field -->
-        <path d="M 80 310 Q 130 295 180 310 Q 230 325 280 305 Q 320 290 350 310 L 350 360 Q 200 365 80 360 Z" fill="#3d7a52" opacity="0.7"/>
-        <!-- Top darker green field -->
-        <path d="M 70 320 Q 140 300 200 320 Q 260 340 330 315 L 330 365 Q 200 370 70 365 Z" fill="#2d5a3d" opacity="0.6"/>
-    </g>
-</svg>
+<img class="fixed-logo-bg" src="logo.png" alt="Cornerstone AG background logo">
 
 <!-- ═══════════════════════════════ NAVIGATION ═══════════════════════════════ -->
 <nav id="navbar">
