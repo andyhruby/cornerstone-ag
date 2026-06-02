@@ -274,9 +274,11 @@
 
         /* Decorative emblem */
         .hero-emblem-wrap {
-            display: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
-        .hero-emblem { width: 100%; max-width: 380px; opacity: 0.11; }
+        .hero-emblem { width: 100%; max-width: 380px; height: auto; }
 
         .scroll-hint {
             position: absolute;
@@ -742,31 +744,9 @@
             </div>
         </div>
 
-        <!-- Decorative emblem -->
-        <div class="hero-emblem-wrap" aria-hidden="true">
-            <svg class="hero-emblem" viewBox="0 0 380 380" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="190" cy="190" r="175" stroke="white" stroke-width="0.8" stroke-dasharray="5 9"/>
-                <circle cx="190" cy="190" r="130" stroke="white" stroke-width="0.5"/>
-                <polygon points="190,28 352,190 190,352 28,190" fill="none" stroke="white" stroke-width="1.5"/>
-                <polygon points="190,70 310,190 190,310 70,190" fill="none" stroke="white" stroke-width="0.7"/>
-                <!-- Central wheat cluster -->
-                <line x1="190" y1="190" x2="190" y2="70" stroke="white" stroke-width="2.2"/>
-                <ellipse cx="190" cy="70" rx="7" ry="16" fill="white" opacity="0.85"/>
-                <ellipse cx="175" cy="94" rx="6" ry="12" fill="white" opacity="0.65" transform="rotate(-22 175 94)"/>
-                <ellipse cx="205" cy="94" rx="6" ry="12" fill="white" opacity="0.65" transform="rotate(22 205 94)"/>
-                <!-- Left stalk -->
-                <line x1="190" y1="190" x2="142" y2="90" stroke="white" stroke-width="1.6"/>
-                <ellipse cx="142" cy="90" rx="6" ry="13" fill="white" opacity="0.6" transform="rotate(-30 142 90)"/>
-                <ellipse cx="131" cy="108" rx="4.5" ry="9" fill="white" opacity="0.45" transform="rotate(-40 131 108)"/>
-                <!-- Right stalk -->
-                <line x1="190" y1="190" x2="238" y2="90" stroke="white" stroke-width="1.6"/>
-                <ellipse cx="238" cy="90" rx="6" ry="13" fill="white" opacity="0.6" transform="rotate(30 238 90)"/>
-                <ellipse cx="249" cy="108" rx="4.5" ry="9" fill="white" opacity="0.45" transform="rotate(40 249 108)"/>
-                <!-- Horizon ground -->
-                <path d="M80 268 Q135 250 190 256 Q245 262 300 248" stroke="white" stroke-width="1" fill="none" opacity="0.35"/>
-                <!-- Corner diamonds -->
-                <rect x="180" y="180" width="20" height="20" stroke="white" stroke-width="0.8" fill="none" opacity="0.4"/>
-            </svg>
+        <!-- Logo image on right side -->
+        <div class="hero-emblem-wrap">
+            <img src="logo.png" alt="Cornerstone AG logo" class="hero-emblem">
         </div>
 
     </div>
